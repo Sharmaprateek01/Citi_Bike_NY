@@ -29,7 +29,7 @@ df_agg = pd.read_csv('df_agg.csv')
 
 fig = go.Figure(go.Bar(x = top20['start_station_name'], y = top20['value'], marker={'color': top20['value'],'colorscale': 'Blues'}))
 fig.update_layout(
-    title = 'Top 20 most popular bike stations in Chicago',
+    title = 'Top 20 most popular bike stations in New York',
     xaxis_title = 'Start stations',
     yaxis_title ='Sum of trips',
     width = 900, height = 600
