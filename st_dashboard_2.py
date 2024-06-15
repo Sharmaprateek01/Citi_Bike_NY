@@ -26,9 +26,9 @@ page = st.sidebar.selectbox('Select an aspect of the analysis',
 
 ########################## Import data ###########################################################################################
 
-df = pd.read_csv('reduced_data.csv')
-top20 = pd.read_csv('top20.csv')
-df_agg = pd.read_csv('df_agg.csv')
+df = pd.read_csv('/Users/prateeksharma/Data Specialization/Citi_Bike_NY/reduced_data_to_plot.csv')
+top20 = pd.read_csv('/Users/prateeksharma/Data Specialization/Citi_Bike_NY/top20.csv')
+df_agg = pd.read_csv('/Users/prateeksharma/Data Specialization/Citi_Bike_NY/df_agg.csv')
 
 ######################################### DEFINE THE PAGES #####################################################################
 
