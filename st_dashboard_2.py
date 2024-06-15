@@ -26,7 +26,7 @@ page = st.sidebar.selectbox('Select an aspect of the analysis',
 
 ########################## Import data ###########################################################################################
 
-df = pd.read_csv('reduced_data_to_plot.csv')
+df = pd.read_csv('reduced_data.csv')
 top20 = pd.read_csv('top20.csv')
 df_agg = pd.read_csv('df_agg.csv')
 
