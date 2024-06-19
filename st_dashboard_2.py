@@ -98,14 +98,14 @@ elif page == 'Interactive map with aggregated bike trips':
     st.markdown("#### Using the filter on the left hand side of the map we can check whether the most popular start stations also appear in the most popular trips.")
     st.markdown("The most popular start stations are:")
     st.markdown("W 21 St & 6 Ave,  West St and Chambers St as well as Broadway & W 58 St. While having the aggregated bike trips filter enabled, we can see that even though W 21 St & 6 Ave is a popular start stations, it doesn't account for the most commonly taken trips.")
-    st.markdown("The most common routes (>700) are between Vesy PI & River Terrace. E 81 St & York Ave, West Thames St, Murray St & Greenwhich St, E 84 St & 1 Ave, which are predominantly located along the water.")
+    st.markdown("The most common routes are between Vesy PI & River Terrace. E 81 St & York Ave, West Thames St, Murray St & Greenwhich St, E 84 St & 1 Ave, which are predominantly located along the water.")
 
 ### Create the dual axis line chart page ###
 
 elif page == 'Weather component and bike usage':
 
     ## Line chart
-
+    
     fig_2 = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig_2.add_trace(
@@ -131,9 +131,13 @@ elif page == "Recommendations":
     bikes = Image.open("Recs_page.png")  # source: DALL-E
     st.image(bikes)
     st.markdown("### Our analysis has shown that Citi Bike should focus on the following objectives moving forward:")
-    st.markdown("- Add more stations to the locations around the water line, such as Vesy PI & River Terrace. E 81 St & York Ave, West Thames St, Murray St & Greenwhich St, E 84 St & 1 Ave, Husdson Yards, Hell's Kitchen, Turtle Bay, Kips Bay, Alphabet City")
+    st.markdown("- Add more stations to the locations around the water line, such as Vesy PI & River Terrace, Financial District, E 81 St & York Ave, West Thames St, Murray St & Greenwhich St, E 84 St & 1 Ave, Husdson Square and Hudson Yards, Hell's Kitchen, Turtle Bay, Kips Bay, Alphabet City")
     st.markdown("- Ensure that bikes are fully stocked in all these stations during the warmer months in order to meet the higher demand, but provide a lower supply in winter and late autumn to reduce logistics costs")
-    st.markdown("- Create routes that go through Central Park. This would be a popular option for tourists and locals alike.")
-    st.markdown("- Consider offering different types of bikes, such as electric bikes, to cater to users with different needs and abilities")
-    st.markdown("- Expand the service area into areas that are not well served, such as Staten Island and the Bronx.")
+    st.markdown("- Create routes that go through & around Central Park. This would be a popular option for tourists and locals alike.")
+    st.markdown("- Consider offering more electric bikes, to cater to users with different needs and abilities")
+    st.markdown("- Expand the service area into areas that are not well served and are untapped, such as Brooklyn and the Bronx.")
     st.markdown("- Provide information on the routes, such as distance and difficulty. This would allow users to choose a ride that is appropriate for their fitness level and time constraints")
+    
+    st.markdown("### Some Limitations of the Analysis.")
+    st.markdown("The analysis is based on available data, which may not capture all factors affecting bike usage.")
+    st.markdown("The recommendations are based on observed trends, which may vary year to year.")
