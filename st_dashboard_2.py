@@ -133,9 +133,8 @@ elif page == "Recommendations":
     st.markdown("### Our analysis has shown that Citi Bike should focus on the following objectives moving forward:")
     st.markdown("- Add more stations to the locations around the water line, such as Vesy PI & River Terrace, Financial District, E 81 St & York Ave, West Thames St, Murray St & Greenwhich St, E 84 St & 1 Ave, Husdson Square and Hudson Yards, Hell's Kitchen, Turtle Bay, Kips Bay, Alphabet City.")
     st.markdown("- Ensure that bikes are fully stocked in all these stations during the warmer months in order to meet the higher demand, but provide a lower supply in winter and late autumn to reduce logistics costs.")
-    st.markdown("- Create routes that go through & around Central Park. This would be a popular option for tourists and locals alike.")
+    st.markdown("- Create routes that go through & around Central Park. This would be a popular option for tourists and locals alike and extend the service to other areas such as Brooklyn and the Bronx.")
     st.markdown("- Consider offering more electric bikes, to cater to users with different needs and abilities.")
-    st.markdown("- Expand the service area into areas that are not well served and are untapped, such as Brooklyn and the Bronx.")
     st.markdown("- Provide information on the routes, such as distance and difficulty. This would allow users to choose a ride that is appropriate for their fitness level and time constraints.")
     
     st.markdown("### Some Limitations of the Analysis:")
