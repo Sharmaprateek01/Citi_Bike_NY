@@ -35,7 +35,7 @@ df_agg = pd.read_csv('df_agg.csv')
 ### Intro page
 
 if page == "Intro page":
-    st.markdown("The dashboard will help with the expansion problems Citi Bike currently faces")
+    st.markdown("The dashboard will help with the expansion problems Citi Bike currently faces.")
     st.markdown("Currently, there are concerns about bike availability at certain times, prompting this analysis to investigate the underlying factors and explore potential solutions to enhance distribution efficiency. The dashboard is separated into 4 sections:")
     st.markdown("- Most popular stations")
     st.markdown("- Weather component and bike usage")
@@ -43,8 +43,8 @@ if page == "Intro page":
     st.markdown("- Recommendations")
     st.markdown("The dropdown menu on the left 'Aspect Selector' will take you to the different aspects of the analysis our team looked at.")
 
-    myImage = Image.open("Citi_Bike.png")  # source: http://www.markradcliffe.com/citi-bike-oohdigital
-    st.image(myImage)
+    myImage = Image.open("Citi_Bike.png") # Load the image
+    st.image(myImage, use_column_width=True, caption="Image source: http://www.markradcliffe.com/citi-bike-oohdigital") # Display the image with a caption
 
 ### Most popular stations page
 
@@ -52,11 +52,15 @@ if page == "Intro page":
 
 elif page == 'Most popular stations':
 
-    # Create the filter on the side bar
-
+   # Create the filter on the sidebar
     with st.sidebar:
-        season_filter = st.multiselect(label='Select the season', options=df['season'].unique(),
-                                       default=df['season'].unique())
+        st.sidebar.markdown("### Select seasons (multiple options allowed):")
+        seasons = df['season'].unique()
+        selected_seasons = {}
+        for season in seasons:
+            selected_seasons[season] = st.sidebar.checkbox(season, value=True)
+
+        season_filter = [season for season, selected in selected_seasons.items() if selected]
 
     df1 = df.query('season == @season_filter')
 
@@ -78,7 +82,7 @@ elif page == 'Most popular stations':
         width=900, height=600
     )
     st.plotly_chart(fig, use_container_width=True)
-    st.markdown("From the bar chart, it is clear that some bike stations in New York City are more popular than others. In the top three, we see W 21 St & 6 Ave, followed by West St and Chambers St, and Broadway & W 58 St. There is a significant difference between the highest and lowest bars on the plot, indicating clear preferences for the leading stations. This is a finding that we could cross-reference with the interactive map, which can be accessed through the sidebar select box.")
+    st.markdown("From the bar chart, it is clear that some bike stations in New York City are more popular than others. In the top three, we see W 21 St & 6 Ave, followed by West St and Chambers St, and Broadway & W 58 St. There is a significant difference between the highest and lowest bars on the plot, indicating clear preferences for the leading stations.")
 
 elif page == 'Interactive map with aggregated bike trips':
 
@@ -106,6 +110,9 @@ elif page == 'Weather component and bike usage':
 
     ## Line chart
     
+    # Calculate Pearson correlation coefficient
+    correlation = df_agg['bike_rides_daily'].corr(df_agg['avgTemp'])
+    
     fig_2 = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig_2.add_trace(
@@ -124,17 +131,22 @@ elif page == 'Weather component and bike usage':
     )
 
     st.plotly_chart(fig_2, use_container_width=True)
-    st.markdown("There is an obvious correlation between the rise and drop of temperatures and their relationship with the frequency of bike trips taken daily. As temperatures plunge, so does bike usage. This insight indicates that the shortage problem may be prevalent merely in the warmer months, approximately from May to September.")
-
+    
+    # Display the correlation value
+    st.markdown(f"### Correlation between daily bike rides and daily temperatures: {correlation:.2f}")
+    st.markdown("A correlation coefficient of 0.85 indicates a strong positive relationship between temperature fluctuations and the frequency of daily bike trips: as temperatures drop, bike usage decreases. This insight suggests that the bike shortage problem is likely to occur primarily during the warmer months, roughly from May to September.")
+        
 elif page == "Recommendations":
     st.header("Conclusions and recommendations")
-    bikes = Image.open("Recs_page.png")  # source: DALL-E
-    st.image(bikes)
-    st.markdown("### Our analysis has shown that Citi Bike should focus on the following objectives moving forward:")
+    bikes = Image.open("Recs_page.png") # Load the image
+    st.image(bikes, caption="Image source: DALL-E") # Display the image with a caption
+    st.markdown("### Analysis has shown that Citi Bike should focus on the following objectives moving forward:")
     st.markdown("- Add more stations to the locations around the water line, such as Vesy PI & River Terrace, Financial District, E 81 St & York Ave, West Thames St, Murray St & Greenwhich St, E 84 St & 1 Ave, Husdson Square and Hudson Yards, Hell's Kitchen, Turtle Bay, Kips Bay, Alphabet City.")
-    st.markdown("- Ensure that bikes are fully stocked in all these stations during the warmer months in order to meet the higher demand, but provide a lower supply in winter and late autumn to reduce logistics costs.")
-    st.markdown("- Create routes that go through & around Central Park. This would be a popular option for tourists and locals alike and extend the service to other areas such as Brooklyn and the Bronx.")
-    st.markdown("- Consider offering more electric bikes, to cater to users with different needs and abilities.")
+    st.markdown("- As per the data, demand is forecasted to range between 100,000 and 125,000 units each month during the warmer season, with an estimated average of around 112,500 units. To meet this higher demand, ensure that at least 85% of the capacity is stocked at all top 20 stations. This approach accounts for fluctuations in demand and ensures availability for peak periods, while also allowing for a buffer to accommodate unexpected increases in usage.")
+    st.markdown("- Data suggests that the number of daily bike trips is around 40,000 from November to April. Therefore, it is recommended to maintain 50% of the total bike stock at each station during these months. This reduction is based on the observed decrease in bike usage during colder months, helping manage the fleet efficiently while ensuring sufficient availability during peak times.")
+    st.markdown("- Implement incentivized redistribution by offering discounts or loyalty points to users who return bikes to stations with low stock and high demand.")
+    st.markdown("- Create routes that go through & around Central Park. This would be a popular option for tourists and locals alike.")
+    st.markdown("- Consider offering more electric bikes to cater to users with diverse needs and abilities. Data suggests that there are approximately twice as many classic bikes as electric bikes, highlighting the opportunity to better meet the demand for electric options.")
     st.markdown("- Provide information on the routes, such as distance and difficulty. This would allow users to choose a ride that is appropriate for their fitness level and time constraints.")
     
     st.markdown("### Some Limitations of the Analysis:")
